@@ -1,7 +1,7 @@
 import os
 
 def GetCodeGenerationConnectionString():
-    connectionStringLocal = r"Driver={SQL Server};Server=localhost,15789;Database=WideWorldImporters;uid=sa;pwd=DonQuixote55;"
+    connectionStringLocal = r"Driver={SQL Server};Server=localhost,15789;Database=WideWorldImporters;uid=sa;pwd=<still Secret;"
 
     user = "sqladmin"
     password = "Dataview#1"
