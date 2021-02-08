@@ -1,0 +1,434 @@
+<!--(set_escape)-->None<!--(end)-->package com.yrc.mcc.data.file.generated;
+
+import java.io.Serializable;
+import java.util.HashMap;
+
+import com.yrc.mcc.core.core.DateType;
+import com.yrc.mcc.core.core.TimeType;
+import com.yrc.mcc.core.file.DbField;
+import com.yrc.mcc.core.file.M204Rec;
+<!--(for i,table in enumerate(tableList))-->
+    <!--(if table.hasReoccurs=="Y")-->
+import com.yrc.mcc.data.model.@!table.javaName!@ReoccurId;
+    <!--(end)-->
+    <!--(if table.hasHistory=="Y")-->
+        <!--(if table.hasReoccurs=="Y")-->
+import com.yrc.mcc.data.model.@!table.javaName!@HistReoccurId;
+        <!--(end)-->
+    <!--(end)-->
+<!--(end)-->
+
+@SuppressWarnings("serial")
+public class @!file!@_Generated extends M204Rec
+{
+<!--(for i,distinctC in enumerate(distinctColumnList))-->
+    <!--(if distinctC.dataType=="INT")-->
+    public int get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->() { return getInt("@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(Object value) { setInt("@!distinctC.dbColumnName!@", value); }
+        <!--(if distinctC.occurs=="Y")-->
+    public int get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index) { return getInt(index, "@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index, Object value) { setInt(index, "@!distinctC.dbColumnName!@", value); }
+        <!--(end)-->
+    <!--(end)-->
+    <!--(if distinctC.dataType=="BIGINT")-->
+    public long get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->() { return getLong("@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(Object value) { setLong("@!distinctC.dbColumnName!@", value); }
+        <!--(if distinctC.occurs=="Y")-->
+    public long get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index) { return getLong(index, "@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index, Object value) { setLong(index, "@!distinctC.dbColumnName!@", value); }
+        <!--(end)-->
+    <!--(end)-->
+    <!--(if distinctC.dataType=="SMALLINT")-->
+    public int get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->() { return getInt("@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(Object value) { setInt("@!distinctC.dbColumnName!@", value); }
+        <!--(if distinctC.occurs=="Y")-->
+    public int get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index) { return getInt(index, "@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index, Object value) { setInt(index, "@!distinctC.dbColumnName!@", value); }
+        <!--(end)-->
+    <!--(end)-->
+    <!--(if distinctC.dataType=="VARCHAR")-->
+    public String get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->() { return getString("@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(Object value) { setString("@!distinctC.dbColumnName!@", value); }
+        <!--(if distinctC.occurs=="Y")-->
+    public String get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index) { return getString(index, "@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index, Object value) { setString(index, "@!distinctC.dbColumnName!@", value); }
+        <!--(end)-->
+    <!--(end)-->
+    <!--(if distinctC.dataType=="CHAR")-->
+    public <!--(if distinctC.length=="1")-->char<!--(else)-->String<!--(end)--> get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->() { return get<!--(if distinctC.length=="1")-->Char<!--(else)-->String<!--(end)-->("@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(Object value) { setChar<!--(if distinctC.length!="1")-->String<!--(end)-->("@!distinctC.dbColumnName!@", value); }
+        <!--(if distinctC.occurs=="Y")-->
+    public <!--(if distinctC.length=="1")-->char<!--(else)-->String<!--(end)--> get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index) { return get<!--(if distinctC.length=="1")-->Char<!--(else)-->String<!--(end)-->(index, "@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index, Object value) { setChar<!--(if distinctC.length!="1")-->String<!--(end)-->(index, "@!distinctC.dbColumnName!@", value); }
+        <!--(end)-->
+    <!--(end)-->
+    <!--(if distinctC.dataType=="DATE")-->
+    public DateType get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->() { return getDateType("@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(Object value) { setDateType("@!distinctC.dbColumnName!@", value); }
+        <!--(if distinctC.occurs=="Y")-->
+    public DateType get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index) { return getDateType(index, "@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index, Object value) { setDateType(index, "@!distinctC.dbColumnName!@", value); }
+        <!--(end)-->
+    <!--(end)-->
+    <!--(if distinctC.dataType=="TIME")-->
+    public TimeType get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->() { return getTimeType("@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(Object value) { setTimeType("@!distinctC.dbColumnName!@", value); }
+        <!--(if distinctC.occurs=="Y")-->
+    public TimeType get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index) { return getTimeType(index, "@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index, Object value) { setTimeType(index, "@!distinctC.dbColumnName!@", value); }
+        <!--(end)-->
+    <!--(end)-->
+    <!--(if distinctC.dataType=="DATETIME2")-->
+    public String get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->() { return getString("@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(Object value) { setString("@!distinctC.dbColumnName!@", value); }
+        <!--(if distinctC.occurs=="Y")-->
+    public String get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index) { return getString(index, "@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index, Object value) { setString(index, "@!distinctC.dbColumnName!@", value); }
+        <!--(end)-->
+    <!--(end)-->
+    <!--(if distinctC.dataType=="DECIMAL")-->
+    public <!--(if distinctC.decimalPlaces=="0" and distinctC.length!="28")-->int<!--(elif distinctC.length=="28")-->long<!--(else)-->double<!--(end)--> get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->() { return get<!--(if distinctC.decimalPlaces=="0" and distinctC.length!="28")-->Int<!--(elif distinctC.length=="28")-->Long<!--(else)-->Double<!--(end)-->("@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(Object value) { set<!--(if distinctC.decimalPlaces=="0" and distinctC.length!="28")-->Int<!--(elif distinctC.length=="28")-->Long<!--(else)-->Double<!--(end)-->("@!distinctC.dbColumnName!@", value); }
+        <!--(if distinctC.occurs=="Y")-->
+    public <!--(if distinctC.decimalPlaces=="0" and distinctC.length!="28")-->int<!--(elif distinctC.length=="28")-->long<!--(else)-->double<!--(end)--> get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index) { return get<!--(if distinctC.decimalPlaces=="0" and distinctC.length!="28")-->Int<!--(elif distinctC.length=="28")-->Long<!--(else)-->Double<!--(end)-->(index, "@!distinctC.dbColumnName!@"); }
+    public void set<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->(int index, Object value) { set<!--(if distinctC.decimalPlaces=="0" and distinctC.length!="28")-->Int<!--(elif distinctC.length=="28")-->Long<!--(else)-->Double<!--(end)-->(index, "@!distinctC.dbColumnName!@", value); }
+        <!--(end)-->
+    <!--(end)-->
+    public DbField get<!--(if distinctC.dbColumnName.endswith("_R"))-->@!distinctC.javaName[0:len(distinctC.javaName)-1]!@<!--(else)-->@!distinctC.javaName!@<!--(end)-->DbField() { return getDbField("@!distinctC.dbColumnName!@"); }
+
+<!--(end)-->
+<!--(if hasTagColumn=="Y")-->
+    @Override
+    public String getTag() {
+        return get@!file!@Tag();
+    }
+
+    @Override
+    public String getTagFieldName() {
+        return "@!file.upper()!@.TAG";
+    }
+<!--(end)-->
+
+<!--(for i,table in enumerate(tableList))-->
+    public void get@!table.javaName!@Values(com.yrc.mcc.data.model.@!table.javaName!@ @!table.modelName!@) {
+        setRecordKey(@!table.modelName!@.getRecordKey());
+        setModificationCount(@!table.modelName!@.getModificationCount());
+        setDtsDttmsp(@!table.modelName!@.getDtsDttmsp());
+        setCreateTs(@!table.modelName!@.getCreateTs());
+        setModifyTs(@!table.modelName!@.getModifyTs());
+        setModifyId(@!table.modelName!@.getModifyId());
+    <!--(for 1,column in enumerate(columnDescriptorList))-->
+        <!--(if column.tableName==table.baseTableName)-->
+        set<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->(@!table.modelName!@.get@!column.javaColumnName!@());
+        <!--(end)-->
+    <!--(end)-->
+    }
+
+    public void set@!table.javaName!@Values(com.yrc.mcc.data.model.@!table.javaName!@ @!table.modelName!@) {
+        @!table.modelName!@.setRecordKey(getRecordKey());
+        @!table.modelName!@.setModificationCount(getModificationCount());
+        @!table.modelName!@.setDtsDttmsp(getDtsDttmsp());
+        @!table.modelName!@.setCreateTs(getCreateTs());
+        @!table.modelName!@.setModifyTs(getModifyTs());
+        @!table.modelName!@.setModifyId(getModifyId());
+    <!--(for 1,column in enumerate(columnDescriptorList))-->
+        <!--(if column.tableName==table.baseTableName)-->
+            <!--(if column.dataType=="INT")-->
+        @!table.modelName!@.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getInteger());
+            <!--(end)-->
+            <!--(if column.dataType=="BIGINT")-->
+        @!table.modelName!@.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getLong());
+            <!--(end)-->
+            <!--(if column.dataType=="SMALLINT")-->
+        @!table.modelName!@.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getShort());
+            <!--(end)-->
+            <!--(if column.dataType=="VARCHAR")-->
+        @!table.modelName!@.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getString());
+            <!--(end)-->
+            <!--(if column.dataType=="DATE")-->
+        @!table.modelName!@.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getDate());
+            <!--(end)-->
+            <!--(if column.dataType=="TIME")-->
+        @!table.modelName!@.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getDate());
+            <!--(end)-->
+            <!--(if column.dataType=="DATETIME2")-->
+        @!table.modelName!@.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getTimestamp());
+            <!--(end)-->
+            <!--(if column.dataType=="CHAR")-->
+        @!table.modelName!@.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().get<!--(if column.length=="1")-->Character<!--(else)-->String<!--(end)-->());
+            <!--(end)-->
+            <!--(if column.dataType=="DECIMAL")-->
+        @!table.modelName!@.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().get<!--(if column.decimalPlaces=="0" and column.length!="28")-->Integer<!--(else)-->Decimal<!--(end)-->());
+            <!--(end)-->
+        <!--(end)-->
+    <!--(end)-->
+    }
+    <!--(if table.hasReoccurs=="Y")-->
+    $!setvar("reoccur", "table.baseTableName + '_REOCCUR'")!$
+    public void get@!table.javaName!@ReoccurValues(com.yrc.mcc.data.model.@!table.javaName!@Reoccur @!table.modelName!@Reoccur, int index) {
+        <!--(for 1,column in enumerate(columnDescriptorList))-->
+            <!--(if column.tableName==reoccur)-->
+            set<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->(index, @!table.modelName!@Reoccur.get@!column.javaColumnName!@());
+            <!--(end)-->
+        <!--(end)-->
+    }
+
+    public void set@!table.javaName!@ReoccurValues(com.yrc.mcc.data.model.@!table.javaName!@Reoccur @!table.modelName!@Reoccur, int index) {
+        @!table.modelName!@Reoccur.setId(new @!table.javaName!@ReoccurId(getRecordKey(), index));
+        @!table.modelName!@Reoccur.setDtsDttmsp(getDtsDttmsp());
+        @!table.modelName!@Reoccur.setCreateTs(getCreateTs());
+        @!table.modelName!@Reoccur.setModifyTs(getModifyTs());
+        @!table.modelName!@Reoccur.setModifyId(getModifyId());
+        <!--(for 1,column in enumerate(columnDescriptorList))-->
+            <!--(if column.tableName==reoccur)-->
+                <!--(if column.dataType=="INT")-->
+        @!table.modelName!@Reoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getInteger());
+                <!--(end)-->
+                <!--(if column.dataType=="BIGINT")-->
+        @!table.modelName!@Reoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getLong());
+                <!--(end)-->
+                <!--(if column.dataType=="SMALLINT")-->
+        @!table.modelName!@Reoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getShort());
+                <!--(end)-->
+                <!--(if column.dataType=="VARCHAR")-->
+        @!table.modelName!@Reoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getString());
+                <!--(end)-->
+                <!--(if column.dataType=="DATE")-->
+        @!table.modelName!@Reoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getDate());
+                <!--(end)-->
+                <!--(if column.dataType=="TIME")-->
+        @!table.modelName!@Reoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getDate());
+                <!--(end)-->
+                <!--(if column.dataType=="DATETIME2")-->
+        @!table.modelName!@Reoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getTimestamp());
+                <!--(end)-->
+                <!--(if column.dataType=="CHAR")-->
+        @!table.modelName!@Reoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).get<!--(if column.length=="1")-->Character<!--(else)-->String<!--(end)-->());
+                <!--(end)-->
+                <!--(if column.dataType=="DECIMAL")-->
+        @!table.modelName!@Reoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).get<!--(if column.decimalPlaces=="0" and column.length!="28")-->Integer<!--(else)-->Decimal<!--(end)-->());
+                <!--(end)-->
+            <!--(end)-->
+        <!--(end)-->
+    }
+    <!--(end)-->
+<!--(end)-->
+
+<!--(for i,table in enumerate(tableList))-->
+    <!--(if table.hasHistory=="Y")-->
+    public void get@!table.javaName!@HistValues(com.yrc.mcc.data.model.@!table.javaName!@Hist @!table.modelName!@Hist) {
+        setRecordKey(@!table.modelName!@Hist.getRecordKey());
+        setModificationCount(@!table.modelName!@Hist.getModificationCount());
+        setDtsDttmsp(@!table.modelName!@Hist.getDtsDttmsp());
+        setCreateTs(@!table.modelName!@Hist.getCreateTs());
+        setModifyTs(@!table.modelName!@Hist.getModifyTs());
+        setModifyId(@!table.modelName!@Hist.getModifyId());
+        <!--(for 1,column in enumerate(columnDescriptorList))-->
+            <!--(if column.tableName==table.baseTableName)-->
+        set<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->(@!table.modelName!@Hist.get@!column.javaColumnName!@());
+            <!--(end)-->
+        <!--(end)-->
+    }
+
+    public void set@!table.javaName!@HistValues(com.yrc.mcc.data.model.@!table.javaName!@Hist @!table.modelName!@Hist) {
+        @!table.modelName!@Hist.setRecordKey(getRecordKey());
+        @!table.modelName!@Hist.setModificationCount(getModificationCount());
+        @!table.modelName!@Hist.setDtsDttmsp(getDtsDttmsp());
+        @!table.modelName!@Hist.setCreateTs(getCreateTs());
+        @!table.modelName!@Hist.setModifyTs(getModifyTs());
+        @!table.modelName!@Hist.setModifyId(getModifyId());
+        <!--(for 1,column in enumerate(columnDescriptorList))-->
+            <!--(if column.tableName==table.baseTableName)-->
+                <!--(if column.dataType=="INT")-->
+        @!table.modelName!@Hist.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getInteger());
+                <!--(end)-->
+                <!--(if column.dataType=="BIGINT")-->
+        @!table.modelName!@Hist.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getLong());
+                <!--(end)-->
+                <!--(if column.dataType=="SMALLINT")-->
+        @!table.modelName!@Hist.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getShort());
+                <!--(end)-->
+                <!--(if column.dataType=="VARCHAR")-->
+        @!table.modelName!@Hist.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getString());
+                <!--(end)-->
+                <!--(if column.dataType=="DATE")-->
+        @!table.modelName!@Hist.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getDate());
+                <!--(end)-->
+                <!--(if column.dataType=="TIME")-->
+        @!table.modelName!@Hist.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getDate());
+                <!--(end)-->
+                <!--(if column.dataType=="DATETIME2")-->
+        @!table.modelName!@Hist.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().getTimestamp());
+                <!--(end)-->
+                <!--(if column.dataType=="CHAR")-->
+        @!table.modelName!@Hist.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().get<!--(if column.length=="1")-->Character<!--(else)-->String<!--(end)-->());
+                <!--(end)-->
+                <!--(if column.dataType=="DECIMAL")-->
+        @!table.modelName!@Hist.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get().get<!--(if column.decimalPlaces=="0" and column.length!="28")-->Integer<!--(else)-->Decimal<!--(end)-->());
+                <!--(end)-->
+            <!--(end)-->
+        <!--(end)-->
+    }
+        <!--(if table.hasReoccurs=="Y")-->
+        $!setvar("reoccur", "table.baseTableName + '_REOCCUR'")!$
+    public void get@!table.javaName!@HistReoccurValues(com.yrc.mcc.data.model.@!table.javaName!@HistReoccur @!table.modelName!@HistReoccur, int index) {
+            <!--(for 1,column in enumerate(columnDescriptorList))-->
+                <!--(if column.tableName==reoccur)-->
+            set<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->(index, @!table.modelName!@HistReoccur.get@!column.javaColumnName!@());
+                <!--(end)-->
+            <!--(end)-->
+    }
+
+    public void set@!table.javaName!@HistReoccurValues(com.yrc.mcc.data.model.@!table.javaName!@HistReoccur @!table.modelName!@HistReoccur, int index) {
+        @!table.modelName!@HistReoccur.setId(new @!table.javaName!@HistReoccurId(getRecordKey(), index));
+        @!table.modelName!@HistReoccur.setDtsDttmsp(getDtsDttmsp());
+        @!table.modelName!@HistReoccur.setCreateTs(getCreateTs());
+        @!table.modelName!@HistReoccur.setModifyTs(getModifyTs());
+        @!table.modelName!@HistReoccur.setModifyId(getModifyId());
+            <!--(for 1,column in enumerate(columnDescriptorList))-->
+                <!--(if column.tableName==reoccur)-->
+                    <!--(if column.dataType=="INT")-->
+        @!table.modelName!@HistReoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getInteger());
+                    <!--(end)-->
+                    <!--(if column.dataType=="BIGINT")-->
+        @!table.modelName!@HistReoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getLong());
+                    <!--(end)-->
+                    <!--(if column.dataType=="SMALLINT")-->
+        @!table.modelName!@HistReoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getShort());
+                    <!--(end)-->
+                    <!--(if column.dataType=="VARCHAR")-->
+        @!table.modelName!@HistReoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getString());
+                    <!--(end)-->
+                    <!--(if column.dataType=="DATE")-->
+        @!table.modelName!@HistReoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getDate());
+                    <!--(end)-->
+                    <!--(if column.dataType=="TIME")-->
+        @!table.modelName!@HistReoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).getDate());
+                    <!--(end)-->
+                    <!--(if column.dataType=="CHAR")-->
+        @!table.modelName!@HistReoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).get<!--(if column.length=="1")-->Character<!--(else)-->String<!--(end)-->());
+                    <!--(end)-->
+                    <!--(if column.dataType=="DECIMAL")-->
+        @!table.modelName!@HistReoccur.set@!column.javaColumnName!@(get<!--(if column.dbColumnName.endswith("_R"))-->@!column.javaColumnName[0:len(column.javaColumnName)-1]!@<!--(else)-->@!column.javaColumnName!@<!--(end)-->DbField().get(index).get<!--(if column.decimalPlaces=="0" and column.length!="28")-->Integer<!--(else)-->Decimal<!--(end)-->());
+                    <!--(end)-->
+                <!--(end)-->
+            <!--(end)-->
+        <!--(end)-->
+    }
+    <!--(end)-->
+<!--(end)-->
+
+    public void getData(String table, int index, Object model) {
+        switch (table) {
+<!--(for i,table in enumerate(tableList))-->
+        case "@!table.baseTableName!@":
+            get@!table.javaName!@Values((com.yrc.mcc.data.model.@!table.javaName!@) model);
+            break;
+    <!--(if table.hasReoccurs=="Y")-->
+        case "@!table.baseTableName!@_REOCCUR":
+            get@!table.javaName!@ReoccurValues((com.yrc.mcc.data.model.@!table.javaName!@Reoccur) model, index);
+            break;
+    <!--(end)-->
+<!--(end)-->
+<!--(for i,table in enumerate(tableList))-->
+    <!--(if table.hasHistory=="Y")-->
+        case "@!table.baseTableName!@_HIST":
+            get@!table.javaName!@HistValues((com.yrc.mcc.data.model.@!table.javaName!@Hist) model);
+            break;
+        <!--(if table.hasReoccurs=="Y")-->
+        case "@!table.baseTableName!@_HIST_REOCCUR":
+            get@!table.javaName!@HistReoccurValues((com.yrc.mcc.data.model.@!table.javaName!@HistReoccur) model, index);
+            break;
+        <!--(end)-->
+    <!--(end)-->
+<!--(end)-->
+        }
+    }
+
+    public void setData(String table, int index, Object model) {
+        switch (table) {
+<!--(for i,table in enumerate(tableList))-->
+        case "@!table.baseTableName!@":
+            set@!table.javaName!@Values((com.yrc.mcc.data.model.@!table.javaName!@) model);
+            break;
+    <!--(if table.hasReoccurs=="Y")-->
+        case "@!table.baseTableName!@_REOCCUR":
+            set@!table.javaName!@ReoccurValues((com.yrc.mcc.data.model.@!table.javaName!@Reoccur) model, index);
+            break;
+    <!--(end)-->
+<!--(end)-->
+<!--(for i,table in enumerate(tableList))-->
+    <!--(if table.hasHistory=="Y")-->
+        case "@!table.baseTableName!@_HIST":
+            set@!table.javaName!@HistValues((com.yrc.mcc.data.model.@!table.javaName!@Hist) model);
+            break;
+        <!--(if table.hasReoccurs=="Y")-->
+        case "@!table.baseTableName!@_HIST_REOCCUR":
+            set@!table.javaName!@HistReoccurValues((com.yrc.mcc.data.model.@!table.javaName!@HistReoccur) model, index);
+            break;
+        <!--(end)-->
+    <!--(end)-->
+<!--(end)-->
+        }
+    }
+
+    public static HashMap<String, String> mainTables = new HashMap<String, String>();
+    public static HashMap<String, String> childTables = new HashMap<String, String>();
+    public static HashMap<String, Class<? extends Serializable>> tableClasses = new HashMap<String, Class<? extends Serializable>>();
+    public static HashMap<String, String[]> dbMap = new HashMap<String, String[]>();
+    public HashMap<String, String> getMainTables() { return mainTables; }
+    public HashMap<String, String> getChildTables()  { return childTables; }
+    public HashMap<String, Class<? extends Serializable>> getTableClasses()  { return tableClasses; }
+    public HashMap<String, String[]> getDbMap() { return dbMap; }
+    static {
+<!--(for i,table in enumerate(tableList))-->
+        mainTables.put("@!table.baseTableName!@", <!--(if table.rectype!="No Rectype")-->"@!table.rectype!@"<!--(else)-->""<!--(end)-->);
+        tableClasses.put("@!table.baseTableName!@", com.yrc.mcc.data.model.@!table.javaName!@.class);
+    <!--(if table.hasHistory=="Y")-->
+        mainTables.put("@!table.baseTableName!@_HIST", <!--(if table.rectype!="No Rectype")-->"@!table.rectype!@.HIST"<!--(else)-->"HIST"<!--(end)-->);
+        tableClasses.put("@!table.baseTableName!@_HIST", com.yrc.mcc.data.model.@!table.javaName!@Hist.class);
+    <!--(end)-->
+
+<!--(end)-->
+<!--(for i,table in enumerate(tableList))-->
+    <!--(if table.hasReoccurs=="Y")-->
+        childTables.put("@!table.baseTableName!@_REOCCUR", <!--(if table.rectype!="No Rectype")-->"@!table.rectype!@"<!--(else)-->""<!--(end)-->);
+        tableClasses.put("@!table.baseTableName!@_REOCCUR", com.yrc.mcc.data.model.@!table.javaName!@Reoccur.class);
+        <!--(if table.hasHistory=="Y")-->
+        childTables.put("@!table.baseTableName!@_HIST_REOCCUR", <!--(if table.rectype!="No Rectype")-->"@!table.rectype!@.HIST"<!--(else)-->"HIST"<!--(end)-->);
+        tableClasses.put("@!table.baseTableName!@_HIST_REOCCUR", com.yrc.mcc.data.model.@!table.javaName!@HistReoccur.class);
+        <!--(end)-->
+    <!--(end)-->
+<!--(end)-->
+
+<!--(for i,table in enumerate(tableList))-->
+        loadMap@!table.javaName!@();
+<!--(end)-->
+    }
+<!--(for i,table in enumerate(tableList))-->
+$!setvar("activetable", "table.baseTableName")!$$!setvar("reoccur", "activetable + '_REOCCUR'")!$
+    private static void loadMap@!table.javaName!@() {
+    <!--(for 1,column in enumerate(columnDescriptorList))-->
+        <!--(if column.tableName==activetable)-->
+        loadMap(dbMap, <!--(if column.rectype!="No Rectype")-->"@!column.rectype!@"<!--(else)-->""<!--(end)--> ,"@!column.dbColumnName!@", "@!column.tableName!@", "0");
+        <!--(end)-->
+        <!--(if column.tableName==reoccur)-->
+        loadMap(dbMap, <!--(if column.rectype!="No Rectype")-->"@!column.rectype!@"<!--(else)-->""<!--(end)--> ,"@!column.dbColumnName!@", "@!column.tableName!@", "1");
+        <!--(end)-->
+    <!--(end)-->
+    <!--(for j,htable in enumerate(tableList))-->
+        <!--(if htable.baseTableName==activetable and htable.hasHistory=="Y")-->
+        $!setvar("reoccurhist", "htable.baseTableName + '_REOCCUR'")!$
+            <!--(for 1,column in enumerate(columnDescriptorList))-->
+                <!--(if column.tableName==htable.baseTableName)-->
+        loadMap(dbMap, <!--(if column.rectype!="No Rectype")-->"@!column.rectype!@.HIST"<!--(else)-->"HIST"<!--(end)-->, "@!column.dbColumnName!@","@!column.tableName!@_HIST","0");
+                <!--(end)-->
+                <!--(if column.tableName==reoccurhist)-->
+        loadMap(dbMap, <!--(if column.rectype!="No Rectype")-->"@!column.rectype!@.HIST"<!--(else)-->"HIST"<!--(end)-->, "@!column.dbColumnName!@","@!activetable!@_HIST_REOCCUR","1");
+                <!--(end)-->
+            <!--(end)-->
+        <!--(end)-->
+    <!--(end)-->
+    }
+<!--(end)-->
+}

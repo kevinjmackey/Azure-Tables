@@ -1,0 +1,467 @@
+BEGIN
+    datastore WideWorldImporters
+            item Cities {"Schema": "Application"}
+            CityID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[CITYID]) {"PK": True, "Req": True}
+            CityName String (100) PRECISION 50 {"Req": True}
+            StateProvinceID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            Location GEOGRAPHY (2147483647) PRECISION 2147483647
+            LatestRecordedPopulation Integer (8) PRECISION 19 SCALE 0
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item Countries {"Schema": "Application"}
+            CountryID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[COUNTRYID]) {"PK": True, "Req": True}
+            CountryName String (120) PRECISION 60 {"Req": True}
+            FormalName String (120) PRECISION 60 {"Req": True}
+            IsoAlpha3Code String (6) PRECISION 3
+            IsoNumericCode Integer (4) PRECISION 10 SCALE 0
+            CountryType String (40) PRECISION 20
+            LatestRecordedPopulation Integer (8) PRECISION 19 SCALE 0
+            Continent String (60) PRECISION 30 {"Req": True}
+            Region String (60) PRECISION 30 {"Req": True}
+            Subregion String (60) PRECISION 30 {"Req": True}
+            Border GEOGRAPHY (2147483647) PRECISION 2147483647
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item DeliveryMethods {"Schema": "Application"}
+            DeliveryMethodID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[DELIVERYMETHODID]) {"PK": True, "Req": True}
+            DeliveryMethodName String (100) PRECISION 50 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item PaymentMethods {"Schema": "Application"}
+            PaymentMethodID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[PAYMENTMETHODID]) {"PK": True, "Req": True}
+            PaymentMethodName String (100) PRECISION 50 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item People {"Schema": "Application"}
+            PersonID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[PERSONID]) {"PK": True, "Req": True}
+            FullName String (100) PRECISION 50 {"Req": True}
+            PreferredName String (100) PRECISION 50 {"Req": True}
+            SearchName String (202) PRECISION 101 {"Req": True}
+            IsPermittedToLogon BIT (1) PRECISION 1 {"Req": True}
+            LogonName String (100) PRECISION 50
+            IsExternalLogonProvider BIT (1) PRECISION 1 {"Req": True}
+            HashedPassword IMAGE (2147483647) PRECISION 2147483647
+            IsSystemUser BIT (1) PRECISION 1 {"Req": True}
+            IsEmployee BIT (1) PRECISION 1 {"Req": True}
+            IsSalesperson BIT (1) PRECISION 1 {"Req": True}
+            UserPreferences NTEXT (2147483646) PRECISION 1073741823
+            PhoneNumber String (40) PRECISION 20
+            FaxNumber String (40) PRECISION 20
+            EmailAddress String (512) PRECISION 256
+            Photo IMAGE (2147483647) PRECISION 2147483647
+            CustomFields NTEXT (2147483646) PRECISION 1073741823
+            OtherLanguages NTEXT (2147483646) PRECISION 1073741823
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item StateProvinces {"Schema": "Application"}
+            StateProvinceID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[STATEPROVINCEID]) {"PK": True, "Req": True}
+            StateProvinceCode String (10) PRECISION 5 {"Req": True}
+            StateProvinceName String (100) PRECISION 50 {"Req": True}
+            CountryID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            SalesTerritory String (100) PRECISION 50 {"Req": True}
+            Border GEOGRAPHY (2147483647) PRECISION 2147483647
+            LatestRecordedPopulation Integer (8) PRECISION 19 SCALE 0
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item SystemParameters {"Schema": "Application"}
+            SystemParameterID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[SYSTEMPARAMETERID]) {"PK": True, "Req": True}
+            DeliveryAddressLine1 String (120) PRECISION 60 {"Req": True}
+            DeliveryAddressLine2 String (120) PRECISION 60
+            DeliveryCityID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            DeliveryPostalCode String (20) PRECISION 10 {"Req": True}
+            DeliveryLocation GEOGRAPHY (2147483647) PRECISION 2147483647 {"Req": True}
+            PostalAddressLine1 String (120) PRECISION 60 {"Req": True}
+            PostalAddressLine2 String (120) PRECISION 60
+            PostalCityID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            PostalPostalCode String (20) PRECISION 10 {"Req": True}
+            ApplicationSettings NTEXT (2147483646) PRECISION 1073741823 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item TransactionTypes {"Schema": "Application"}
+            TransactionTypeID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[TRANSACTIONTYPEID]) {"PK": True, "Req": True}
+            TransactionTypeName String (100) PRECISION 50 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item PurchaseOrderLines {"Schema": "Purchasing"}
+            PurchaseOrderLineID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[PURCHASEORDERLINEID]) {"PK": True, "Req": True}
+            PurchaseOrderID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            StockItemID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            OrderedOuters Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            Description String (200) PRECISION 100 {"Req": True}
+            ReceivedOuters Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            PackageTypeID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ExpectedUnitPricePerOuter NUMERIC (20) PRECISION 18 SCALE 2
+            LastReceiptDate DATE (20) PRECISION 10
+            IsOrderLineFinalized BIT (1) PRECISION 1 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item PurchaseOrders {"Schema": "Purchasing"}
+            PurchaseOrderID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[PURCHASEORDERID]) {"PK": True, "Req": True}
+            SupplierID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            OrderDate DATE (20) PRECISION 10 {"Req": True}
+            DeliveryMethodID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ContactPersonID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ExpectedDeliveryDate DATE (20) PRECISION 10
+            SupplierReference String (40) PRECISION 20
+            IsOrderFinalized BIT (1) PRECISION 1 {"Req": True}
+            Comments NTEXT (2147483646) PRECISION 1073741823
+            InternalComments NTEXT (2147483646) PRECISION 1073741823
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item SupplierCategories {"Schema": "Purchasing"}
+            SupplierCategoryID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[SUPPLIERCATEGORYID]) {"PK": True, "Req": True}
+            SupplierCategoryName String (100) PRECISION 50 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item Suppliers {"Schema": "Purchasing"}
+            SupplierID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[SUPPLIERID]) {"PK": True, "Req": True}
+            SupplierName String (200) PRECISION 100 {"Req": True}
+            SupplierCategoryID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            PrimaryContactPersonID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            AlternateContactPersonID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            DeliveryMethodID Integer (4) PRECISION 10 SCALE 0
+            DeliveryCityID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            PostalCityID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            SupplierReference String (40) PRECISION 20
+            BankAccountName String (100) PRECISION 50
+            BankAccountBranch String (100) PRECISION 50
+            BankAccountCode String (40) PRECISION 20
+            BankAccountNumber String (40) PRECISION 20
+            BankInternationalCode String (40) PRECISION 20
+            PaymentDays Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            InternalComments NTEXT (2147483646) PRECISION 1073741823
+            PhoneNumber String (40) PRECISION 20 {"Req": True}
+            FaxNumber String (40) PRECISION 20 {"Req": True}
+            WebsiteURL String (512) PRECISION 256 {"Req": True}
+            DeliveryAddressLine1 String (120) PRECISION 60 {"Req": True}
+            DeliveryAddressLine2 String (120) PRECISION 60
+            DeliveryPostalCode String (20) PRECISION 10 {"Req": True}
+            DeliveryLocation GEOGRAPHY (2147483647) PRECISION 2147483647
+            PostalAddressLine1 String (120) PRECISION 60 {"Req": True}
+            PostalAddressLine2 String (120) PRECISION 60
+            PostalPostalCode String (20) PRECISION 10 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+            SupplierID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            SupplierName String (200) PRECISION 100 {"Req": True}
+            SupplierCategoryName String (100) PRECISION 50
+            PrimaryContact String (100) PRECISION 50
+            AlternateContact String (100) PRECISION 50
+            PhoneNumber String (40) PRECISION 20 {"Req": True}
+            FaxNumber String (40) PRECISION 20 {"Req": True}
+            WebsiteURL String (512) PRECISION 256 {"Req": True}
+            DeliveryMethod String (100) PRECISION 50
+            CityName String (100) PRECISION 50
+            DeliveryLocation GEOGRAPHY (2147483647) PRECISION 2147483647
+            SupplierReference String (40) PRECISION 20
+    end_item
+            item SupplierTransactions {"Schema": "Purchasing"}
+            SupplierTransactionID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[TRANSACTIONID]) {"PK": True, "Req": True}
+            SupplierID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            TransactionTypeID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            PurchaseOrderID Integer (4) PRECISION 10 SCALE 0
+            PaymentMethodID Integer (4) PRECISION 10 SCALE 0
+            SupplierInvoiceNumber String (40) PRECISION 20
+            TransactionDate DATE (20) PRECISION 10 {"Req": True}
+            AmountExcludingTax NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            TaxAmount NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            TransactionAmount NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            OutstandingBalance NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            FinalizationDate DATE (20) PRECISION 10
+            IsFinalized BIT (1) PRECISION 1
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item BuyingGroups {"Schema": "Sales"}
+            BuyingGroupID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[BUYINGGROUPID]) {"PK": True, "Req": True}
+            BuyingGroupName String (100) PRECISION 50 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item CustomerCategories {"Schema": "Sales"}
+            CustomerCategoryID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[CUSTOMERCATEGORYID]) {"PK": True, "Req": True}
+            CustomerCategoryName String (100) PRECISION 50 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item Customers {"Schema": "Sales"}
+            CustomerID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[CUSTOMERID]) {"PK": True, "Req": True}
+            CustomerName String (200) PRECISION 100 {"Req": True}
+            BillToCustomerID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            CustomerCategoryID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            BuyingGroupID Integer (4) PRECISION 10 SCALE 0
+            PrimaryContactPersonID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            AlternateContactPersonID Integer (4) PRECISION 10 SCALE 0
+            DeliveryMethodID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            DeliveryCityID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            PostalCityID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            CreditLimit NUMERIC (20) PRECISION 18 SCALE 2
+            AccountOpenedDate DATE (20) PRECISION 10 {"Req": True}
+            StandardDiscountPercentage NUMERIC (20) PRECISION 18 SCALE 3 {"Req": True}
+            IsStatementSent BIT (1) PRECISION 1 {"Req": True}
+            IsOnCreditHold BIT (1) PRECISION 1 {"Req": True}
+            PaymentDays Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            PhoneNumber String (40) PRECISION 20 {"Req": True}
+            FaxNumber String (40) PRECISION 20 {"Req": True}
+            DeliveryRun String (10) PRECISION 5
+            RunPosition String (10) PRECISION 5
+            WebsiteURL String (512) PRECISION 256 {"Req": True}
+            DeliveryAddressLine1 String (120) PRECISION 60 {"Req": True}
+            DeliveryAddressLine2 String (120) PRECISION 60
+            DeliveryPostalCode String (20) PRECISION 10 {"Req": True}
+            DeliveryLocation GEOGRAPHY (2147483647) PRECISION 2147483647
+            PostalAddressLine1 String (120) PRECISION 60 {"Req": True}
+            PostalAddressLine2 String (120) PRECISION 60
+            PostalPostalCode String (20) PRECISION 10 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+            CustomerID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            CustomerName String (200) PRECISION 100 {"Req": True}
+            CustomerCategoryName String (100) PRECISION 50
+            PrimaryContact String (100) PRECISION 50
+            AlternateContact String (100) PRECISION 50
+            PhoneNumber String (40) PRECISION 20 {"Req": True}
+            FaxNumber String (40) PRECISION 20 {"Req": True}
+            BuyingGroupName String (100) PRECISION 50
+            WebsiteURL String (512) PRECISION 256 {"Req": True}
+            DeliveryMethod String (100) PRECISION 50
+            CityName String (100) PRECISION 50
+            DeliveryLocation GEOGRAPHY (2147483647) PRECISION 2147483647
+            DeliveryRun String (10) PRECISION 5
+            RunPosition String (10) PRECISION 5
+    end_item
+            item CustomerTransactions {"Schema": "Sales"}
+            CustomerTransactionID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[TRANSACTIONID]) {"PK": True, "Req": True}
+            CustomerID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            TransactionTypeID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            InvoiceID Integer (4) PRECISION 10 SCALE 0
+            PaymentMethodID Integer (4) PRECISION 10 SCALE 0
+            TransactionDate DATE (20) PRECISION 10 {"Req": True}
+            AmountExcludingTax NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            TaxAmount NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            TransactionAmount NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            OutstandingBalance NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            FinalizationDate DATE (20) PRECISION 10
+            IsFinalized BIT (1) PRECISION 1
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item InvoiceLines {"Schema": "Sales"}
+            InvoiceLineID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[INVOICELINEID]) {"PK": True, "Req": True}
+            InvoiceID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            StockItemID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            Description String (200) PRECISION 100 {"Req": True}
+            PackageTypeID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            Quantity Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            UnitPrice NUMERIC (20) PRECISION 18 SCALE 2
+            TaxRate NUMERIC (20) PRECISION 18 SCALE 3 {"Req": True}
+            TaxAmount NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            LineProfit NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            ExtendedPrice NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item Invoices {"Schema": "Sales"}
+            InvoiceID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[INVOICEID]) {"PK": True, "Req": True}
+            CustomerID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            BillToCustomerID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            OrderID Integer (4) PRECISION 10 SCALE 0
+            DeliveryMethodID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ContactPersonID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            AccountsPersonID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            SalespersonPersonID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            PackedByPersonID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            InvoiceDate DATE (20) PRECISION 10 {"Req": True}
+            CustomerPurchaseOrderNumber String (40) PRECISION 20
+            IsCreditNote BIT (1) PRECISION 1 {"Req": True}
+            CreditNoteReason NTEXT (2147483646) PRECISION 1073741823
+            Comments NTEXT (2147483646) PRECISION 1073741823
+            DeliveryInstructions NTEXT (2147483646) PRECISION 1073741823
+            InternalComments NTEXT (2147483646) PRECISION 1073741823
+            TotalDryItems Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            TotalChillerItems Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            DeliveryRun String (10) PRECISION 5
+            RunPosition String (10) PRECISION 5
+            ReturnedDeliveryData NTEXT (2147483646) PRECISION 1073741823
+            ConfirmedDeliveryTime Datetime (54) PRECISION 27
+            ConfirmedReceivedBy String (8000) PRECISION 4000
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item OrderLines {"Schema": "Sales"}
+            OrderLineID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[ORDERLINEID]) {"PK": True, "Req": True}
+            OrderID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            StockItemID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            Description String (200) PRECISION 100 {"Req": True}
+            PackageTypeID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            Quantity Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            UnitPrice NUMERIC (20) PRECISION 18 SCALE 2
+            TaxRate NUMERIC (20) PRECISION 18 SCALE 3 {"Req": True}
+            PickedQuantity Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            PickingCompletedWhen Datetime (54) PRECISION 27
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item Orders {"Schema": "Sales"}
+            OrderID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[ORDERID]) {"PK": True, "Req": True}
+            CustomerID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            SalespersonPersonID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            PickedByPersonID Integer (4) PRECISION 10 SCALE 0
+            ContactPersonID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            BackorderOrderID Integer (4) PRECISION 10 SCALE 0
+            OrderDate DATE (20) PRECISION 10 {"Req": True}
+            ExpectedDeliveryDate DATE (20) PRECISION 10 {"Req": True}
+            CustomerPurchaseOrderNumber String (40) PRECISION 20
+            IsUndersupplyBackordered BIT (1) PRECISION 1 {"Req": True}
+            Comments NTEXT (2147483646) PRECISION 1073741823
+            DeliveryInstructions NTEXT (2147483646) PRECISION 1073741823
+            InternalComments NTEXT (2147483646) PRECISION 1073741823
+            PickingCompletedWhen Datetime (54) PRECISION 27
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item SpecialDeals {"Schema": "Sales"}
+            SpecialDealID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[SPECIALDEALID]) {"PK": True, "Req": True}
+            StockItemID Integer (4) PRECISION 10 SCALE 0
+            CustomerID Integer (4) PRECISION 10 SCALE 0
+            BuyingGroupID Integer (4) PRECISION 10 SCALE 0
+            CustomerCategoryID Integer (4) PRECISION 10 SCALE 0
+            StockGroupID Integer (4) PRECISION 10 SCALE 0
+            DealDescription String (60) PRECISION 30 {"Req": True}
+            StartDate DATE (20) PRECISION 10 {"Req": True}
+            EndDate DATE (20) PRECISION 10 {"Req": True}
+            DiscountAmount NUMERIC (20) PRECISION 18 SCALE 2
+            DiscountPercentage NUMERIC (20) PRECISION 18 SCALE 3
+            UnitPrice NUMERIC (20) PRECISION 18 SCALE 2
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item ColdRoomTemperatures {"Schema": "Warehouse"}
+            ColdRoomTemperatureID Integer (8) PRECISION 19 SCALE 0 {"PK": True, "Req": True}
+            ColdRoomSensorNumber Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            RecordedWhen Datetime (54) PRECISION 27 {"Req": True}
+            Temperature NUMERIC (12) PRECISION 10 SCALE 2 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item Colors {"Schema": "Warehouse"}
+            ColorID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[COLORID]) {"PK": True, "Req": True}
+            ColorName String (40) PRECISION 20 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item PackageTypes {"Schema": "Warehouse"}
+            PackageTypeID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[PACKAGETYPEID]) {"PK": True, "Req": True}
+            PackageTypeName String (100) PRECISION 50 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item StockGroups {"Schema": "Warehouse"}
+            StockGroupID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[STOCKGROUPID]) {"PK": True, "Req": True}
+            StockGroupName String (100) PRECISION 50 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item StockItemHoldings {"Schema": "Warehouse"}
+            StockItemID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            QuantityOnHand Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            BinLocation String (40) PRECISION 20 {"Req": True}
+            LastStocktakeQuantity Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastCostPrice NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            ReorderLevel Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            TargetStockLevel Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item StockItems {"Schema": "Warehouse"}
+            StockItemID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[STOCKITEMID]) {"PK": True, "Req": True}
+            StockItemName String (200) PRECISION 100 {"Req": True}
+            SupplierID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ColorID Integer (4) PRECISION 10 SCALE 0
+            UnitPackageID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            OuterPackageID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            Brand String (100) PRECISION 50
+            Size String (40) PRECISION 20
+            LeadTimeDays Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            QuantityPerOuter Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            IsChillerStock BIT (1) PRECISION 1 {"Req": True}
+            Barcode String (100) PRECISION 50
+            TaxRate NUMERIC (20) PRECISION 18 SCALE 3 {"Req": True}
+            UnitPrice NUMERIC (20) PRECISION 18 SCALE 2 {"Req": True}
+            RecommendedRetailPrice NUMERIC (20) PRECISION 18 SCALE 2
+            TypicalWeightPerUnit NUMERIC (20) PRECISION 18 SCALE 3 {"Req": True}
+            MarketingComments NTEXT (2147483646) PRECISION 1073741823
+            InternalComments NTEXT (2147483646) PRECISION 1073741823
+            Photo IMAGE (2147483647) PRECISION 2147483647
+            CustomFields NTEXT (2147483646) PRECISION 1073741823
+            Tags NTEXT (2147483646) PRECISION 1073741823
+            SearchDetails NTEXT (2147483646) PRECISION 1073741823 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ValidFrom Datetime (54) PRECISION 27 {"Req": True}
+            ValidTo Datetime (54) PRECISION 27 {"Req": True}
+    end_item
+            item StockItemStockGroups {"Schema": "Warehouse"}
+            StockItemStockGroupID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[STOCKITEMSTOCKGROUPID]) {"PK": True, "Req": True}
+            StockItemID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            StockGroupID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item StockItemTransactions {"Schema": "Warehouse"}
+            StockItemTransactionID Integer (4) PRECISION 10 SCALE 0 DEFAULT (NEXT VALUE FOR [SEQUENCES].[TRANSACTIONID]) {"PK": True, "Req": True}
+            StockItemID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            TransactionTypeID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            CustomerID Integer (4) PRECISION 10 SCALE 0
+            InvoiceID Integer (4) PRECISION 10 SCALE 0
+            SupplierID Integer (4) PRECISION 10 SCALE 0
+            PurchaseOrderID Integer (4) PRECISION 10 SCALE 0
+            TransactionOccurredWhen Datetime (54) PRECISION 27 {"Req": True}
+            Quantity NUMERIC (20) PRECISION 18 SCALE 3 {"Req": True}
+            LastEditedBy Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            LastEditedWhen Datetime (54) PRECISION 27 DEFAULT (SYSDATETIME()) {"Req": True}
+    end_item
+            item VehicleTemperatures {"Schema": "Warehouse"}
+            VehicleTemperatureID Integer (8) PRECISION 19 SCALE 0 {"PK": True, "Req": True}
+            VehicleRegistration String (40) PRECISION 20 {"Req": True}
+            ChillerSensorNumber Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            RecordedWhen Datetime (54) PRECISION 27 {"Req": True}
+            Temperature NUMERIC (12) PRECISION 10 SCALE 2 {"Req": True}
+            FullSensorData String (2000) PRECISION 1000
+            IsCompressed BIT (1) PRECISION 1 {"Req": True}
+            CompressedSensorData IMAGE (2147483647) PRECISION 2147483647
+            VehicleTemperatureID Integer (8) PRECISION 19 SCALE 0 {"Req": True}
+            VehicleRegistration String (40) PRECISION 20 {"Req": True}
+            ChillerSensorNumber Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            RecordedWhen Datetime (54) PRECISION 27 {"Req": True}
+            Temperature NUMERIC (12) PRECISION 10 SCALE 2 {"Req": True}
+            FullSensorData String (2000) PRECISION 1000
+    end_item
+    
+    end_datastore
+END

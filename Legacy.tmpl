@@ -1,0 +1,30 @@
+	item @!baseTable!@ {"Schema" : "Legacy", "File" : "@!M204File!@" }
+		RECORD_KEY numeric precision 30 scale 0
+		DTS_DTTMSP integer
+<!--(if hasRectype=="Y")-->
+		@!rectype!@ string length 255
+<!--(end)-->
+<!--(for i,item in enumerate(baseColumns))-->
+		@!item.atttributename!@ @!item.datatype!@<!--(if item.length!="")--> length @!item.length!@<!--(end)--><!--(if item.precision!=None)--> precision @!item.precision!@<!--(end)--><!--(if item.scale!=None)--> scale @!item.scale!@<!--(end)--><!--(if item.isBase64!=0)--> {"isBase64" : "1"}<!--(end)-->
+<!--(end)-->
+		SOURCEDELETED boolean
+		Create_TS datetime length 7
+		Modify_TS datetime length 7
+		Mofidy_ID string length 20
+<!--(if hasReoccur=="Y")-->
+		item @!reoccurTable!@ {"Schema" : "Legacy", "File" : "@!M204File!@" }
+			@!M204File!@_RECORD_KEY numeric precision 30 scale 0
+			DTS_DTTMSP integer
+	<!--(if hasRectype=="Y")-->
+			@!rectype!@ string length 255
+	<!--(end)-->
+	<!--(for i,item in enumerate(reoccurColumns))-->
+			@!item.atttributename!@ @!item.datatype!@ <!--(if item.length!="")-->length @!item.length!@<!--(end)--><!--(if item.precision!=None)--> precision @!item.precision!@<!--(end)--><!--(if item.scale!=None)--> scale @!item.scale!@<!--(end)--><!--(if item.isBase64!=0)--> {"isBase64" : "1"}<!--(end)-->
+	<!--(end)-->
+			SOURCEDELETED boolean
+			Create_TS datetime length 7
+			Modify_TS datetime length 7
+			Mofidy_ID string length 20
+		end_item
+<!--(end)-->
+	end_item

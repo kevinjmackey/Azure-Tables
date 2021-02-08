@@ -1,0 +1,632 @@
+BEGIN
+    datastore AdventureWorks2019
+            item AWBuildVersion {"Schema": "dbo"}
+            SystemInformationID Integer (1) PRECISION 3 SCALE 0 {"PK": True, "Req": True}
+            Database Version String (50) PRECISION 25 {"Req": True}
+            VersionDate Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item DatabaseLog {"Schema": "dbo"}
+            DatabaseLogID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            PostTime Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            DatabaseUser SYSNAME (256) PRECISION 128 {"Req": True}
+            Event SYSNAME (256) PRECISION 128 {"Req": True}
+            Schema SYSNAME (256) PRECISION 128
+            Object SYSNAME (256) PRECISION 128
+            TSQL NTEXT (2147483646) PRECISION 1073741823 {"Req": True}
+            XmlEvent XML (2147483646) PRECISION 1073741823 {"Req": True}
+    end_item
+            item ErrorLog {"Schema": "dbo"}
+            ErrorLogID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ErrorTime Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+            UserName SYSNAME (256) PRECISION 128 {"Req": True}
+            ErrorNumber Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ErrorSeverity Integer (4) PRECISION 10 SCALE 0
+            ErrorState Integer (4) PRECISION 10 SCALE 0
+            ErrorProcedure String (252) PRECISION 126
+            ErrorLine Integer (4) PRECISION 10 SCALE 0
+            ErrorMessage String (8000) PRECISION 4000 {"Req": True}
+    end_item
+            item Department {"Schema": "HumanResources"}
+            DepartmentID Integer (2) PRECISION 5 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            GroupName String (100) PRECISION 50 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Employee {"Schema": "HumanResources"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            NationalIDNumber String (30) PRECISION 15 {"Req": True}
+            LoginID String (512) PRECISION 256 {"Req": True}
+            OrganizationNode HIERARCHYID (892) PRECISION 892
+            OrganizationLevel Integer (2) PRECISION 5 SCALE 0
+            JobTitle String (100) PRECISION 50 {"Req": True}
+            BirthDate DATE (20) PRECISION 10 {"Req": True}
+            MaritalStatus Character (2) PRECISION 1 {"Req": True}
+            Gender Character (2) PRECISION 1 {"Req": True}
+            HireDate DATE (20) PRECISION 10 {"Req": True}
+            SalariedFlag Boolean (1) PRECISION 1 DEFAULT 1 {"Req": True}
+            VacationHours Integer (2) PRECISION 5 SCALE 0 DEFAULT 0 {"Req": True}
+            SickLeaveHours Integer (2) PRECISION 5 SCALE 0 DEFAULT 0 {"Req": True}
+            CurrentFlag Boolean (1) PRECISION 1 DEFAULT 1 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item EmployeeDepartmentHistory {"Schema": "HumanResources"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            DepartmentID Integer (2) PRECISION 5 SCALE 0 {"PK": True, "Req": True}
+            ShiftID Integer (1) PRECISION 3 SCALE 0 {"Req": True}
+            StartDate DATE (20) PRECISION 10 {"Req": True}
+            EndDate DATE (20) PRECISION 10
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item EmployeePayHistory {"Schema": "HumanResources"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            RateChangeDate Datetime (16) PRECISION 23 SCALE 3 {"PK": True, "Req": True}
+            Rate Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            PayFrequency Integer (1) PRECISION 3 SCALE 0 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item JobCandidate {"Schema": "HumanResources"}
+            JobCandidateID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0
+            Resume XML (2147483646) PRECISION 1073741823
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Shift {"Schema": "HumanResources"}
+            ShiftID Integer (1) PRECISION 3 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            StartTime TIME (32) PRECISION 16 {"Req": True}
+            EndTime TIME (32) PRECISION 16 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Address {"Schema": "Person"}
+            AddressID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            AddressLine1 String (120) PRECISION 60 {"Req": True}
+            AddressLine2 String (120) PRECISION 60
+            City String (60) PRECISION 30 {"Req": True}
+            StateProvinceID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            PostalCode String (30) PRECISION 15 {"Req": True}
+            SpatialLocation GEOGRAPHY (2147483647) PRECISION 2147483647
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item AddressType {"Schema": "Person"}
+            AddressTypeID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item BusinessEntity {"Schema": "Person"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item BusinessEntityAddress {"Schema": "Person"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            AddressID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            AddressTypeID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item BusinessEntityContact {"Schema": "Person"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            PersonID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ContactTypeID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ContactType {"Schema": "Person"}
+            ContactTypeID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item CountryRegion {"Schema": "Person"}
+            CountryRegionCode String (6) PRECISION 3 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item EmailAddress {"Schema": "Person"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            EmailAddressID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            EmailAddress String (100) PRECISION 50
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Password {"Schema": "Person"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            PasswordHash String (128) PRECISION 128 {"Req": True}
+            PasswordSalt String (10) PRECISION 10 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Person {"Schema": "Person"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            PersonType Character (4) PRECISION 2 {"Req": True}
+            NameStyle Boolean (1) PRECISION 1 DEFAULT 0 {"Req": True}
+            Title String (16) PRECISION 8
+            FirstName String (100) PRECISION 50 {"Req": True}
+            MiddleName String (100) PRECISION 50
+            LastName String (100) PRECISION 50 {"Req": True}
+            Suffix String (20) PRECISION 10
+            EmailPromotion Integer (4) PRECISION 10 SCALE 0 DEFAULT 0 {"Req": True}
+            AdditionalContactInfo XML (2147483646) PRECISION 1073741823
+            Demographics XML (2147483646) PRECISION 1073741823
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item PersonPhone {"Schema": "Person"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            PhoneNumber PHONE (50) PRECISION 25 {"PK": True, "Req": True}
+            PhoneNumberTypeID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item PhoneNumberType {"Schema": "Person"}
+            PhoneNumberTypeID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item StateProvince {"Schema": "Person"}
+            StateProvinceID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            StateProvinceCode Character (6) PRECISION 3 {"Req": True}
+            CountryRegionCode String (6) PRECISION 3 {"Req": True}
+            IsOnlyStateProvinceFlag Boolean (1) PRECISION 1 DEFAULT 1 {"Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            TerritoryID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item BillOfMaterials {"Schema": "Production"}
+            BillOfMaterialsID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ProductAssemblyID Integer (4) PRECISION 10 SCALE 0
+            ComponentID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            StartDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+            EndDate Datetime (16) PRECISION 23 SCALE 3
+            UnitMeasureCode Character (6) PRECISION 3 {"Req": True}
+            BOMLevel Integer (2) PRECISION 5 SCALE 0 {"Req": True}
+            PerAssemblyQty NUMERIC (10) PRECISION 8 SCALE 2 DEFAULT 1.00 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Culture {"Schema": "Production"}
+            CultureID Character (12) PRECISION 6 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Document {"Schema": "Production"}
+            DocumentNode HIERARCHYID (892) PRECISION 892 {"PK": True, "Req": True}
+            DocumentLevel Integer (2) PRECISION 5 SCALE 0
+            Title String (100) PRECISION 50 {"Req": True}
+            Owner Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            FolderFlag BIT (1) PRECISION 1 DEFAULT 0 {"Req": True}
+            FileName String (800) PRECISION 400 {"Req": True}
+            FileExtension String (16) PRECISION 8 {"Req": True}
+            Revision Character (10) PRECISION 5 {"Req": True}
+            ChangeNumber Integer (4) PRECISION 10 SCALE 0 DEFAULT 0 {"Req": True}
+            Status Integer (1) PRECISION 3 SCALE 0 {"Req": True}
+            DocumentSummary NTEXT (2147483646) PRECISION 1073741823
+            Document IMAGE (2147483647) PRECISION 2147483647
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Illustration {"Schema": "Production"}
+            IllustrationID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Diagram XML (2147483646) PRECISION 1073741823
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Location {"Schema": "Production"}
+            LocationID Integer (2) PRECISION 5 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            CostRate Float (12) PRECISION 10 SCALE 4 DEFAULT 0.00 {"Req": True}
+            Availability NUMERIC (10) PRECISION 8 SCALE 2 DEFAULT 0.00 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Product {"Schema": "Production"}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            ProductNumber String (50) PRECISION 25 {"Req": True}
+            MakeFlag Boolean (1) PRECISION 1 DEFAULT 1 {"Req": True}
+            FinishedGoodsFlag Boolean (1) PRECISION 1 DEFAULT 1 {"Req": True}
+            Color String (30) PRECISION 15
+            SafetyStockLevel Integer (2) PRECISION 5 SCALE 0 {"Req": True}
+            ReorderPoint Integer (2) PRECISION 5 SCALE 0 {"Req": True}
+            StandardCost Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            ListPrice Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            Size String (10) PRECISION 5
+            SizeUnitMeasureCode Character (6) PRECISION 3
+            WeightUnitMeasureCode Character (6) PRECISION 3
+            Weight NUMERIC (10) PRECISION 8 SCALE 2
+            DaysToManufacture Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ProductLine Character (4) PRECISION 2
+            Class Character (4) PRECISION 2
+            Style Character (4) PRECISION 2
+            ProductSubcategoryID Integer (4) PRECISION 10 SCALE 0
+            ProductModelID Integer (4) PRECISION 10 SCALE 0
+            SellStartDate Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            SellEndDate Datetime (16) PRECISION 23 SCALE 3
+            DiscontinuedDate Datetime (16) PRECISION 23 SCALE 3
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductCategory {"Schema": "Production"}
+            ProductCategoryID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductCostHistory {"Schema": "Production"}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            StartDate Datetime (16) PRECISION 23 SCALE 3 {"PK": True, "Req": True}
+            EndDate Datetime (16) PRECISION 23 SCALE 3
+            StandardCost Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductDescription {"Schema": "Production"}
+            ProductDescriptionID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Description String (800) PRECISION 400 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductDocument {"Schema": "Production"}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            DocumentNode HIERARCHYID (892) PRECISION 892 {"PK": True, "Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductInventory {"Schema": "Production"}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            LocationID Integer (2) PRECISION 5 SCALE 0 {"PK": True, "Req": True}
+            Shelf String (20) PRECISION 10 {"Req": True}
+            Bin Integer (1) PRECISION 3 SCALE 0 {"Req": True}
+            Quantity Integer (2) PRECISION 5 SCALE 0 DEFAULT 0 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductListPriceHistory {"Schema": "Production"}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            StartDate Datetime (16) PRECISION 23 SCALE 3 {"PK": True, "Req": True}
+            EndDate Datetime (16) PRECISION 23 SCALE 3
+            ListPrice Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductModel {"Schema": "Production"}
+            ProductModelID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            CatalogDescription XML (2147483646) PRECISION 1073741823
+            Instructions XML (2147483646) PRECISION 1073741823
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductModelIllustration {"Schema": "Production"}
+            ProductModelID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            IllustrationID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductModelProductDescriptionCulture {"Schema": "Production"}
+            ProductModelID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ProductDescriptionID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            CultureID Character (12) PRECISION 6 {"PK": True, "Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductPhoto {"Schema": "Production"}
+            ProductPhotoID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ThumbNailPhoto IMAGE (2147483647) PRECISION 2147483647
+            ThumbnailPhotoFileName String (100) PRECISION 50
+            LargePhoto IMAGE (2147483647) PRECISION 2147483647
+            LargePhotoFileName String (100) PRECISION 50
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductProductPhoto {"Schema": "Production"}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ProductPhotoID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Primary Boolean (1) PRECISION 1 DEFAULT 0 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductReview {"Schema": "Production"}
+            ProductReviewID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ReviewerName String (100) PRECISION 50 {"Req": True}
+            ReviewDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+            EmailAddress String (100) PRECISION 50 {"Req": True}
+            Rating Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            Comments String (7700) PRECISION 3850
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductSubcategory {"Schema": "Production"}
+            ProductSubcategoryID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ProductCategoryID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ScrapReason {"Schema": "Production"}
+            ScrapReasonID Integer (2) PRECISION 5 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item TransactionHistory {"Schema": "Production"}
+            TransactionID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ReferenceOrderID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ReferenceOrderLineID Integer (4) PRECISION 10 SCALE 0 DEFAULT 0 {"Req": True}
+            TransactionDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+            TransactionType Character (2) PRECISION 1 {"Req": True}
+            Quantity Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ActualCost Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item TransactionHistoryArchive {"Schema": "Production"}
+            TransactionID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ReferenceOrderID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ReferenceOrderLineID Integer (4) PRECISION 10 SCALE 0 DEFAULT 0 {"Req": True}
+            TransactionDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+            TransactionType Character (2) PRECISION 1 {"Req": True}
+            Quantity Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ActualCost Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item UnitMeasure {"Schema": "Production"}
+            UnitMeasureCode Character (6) PRECISION 3 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item WorkOrder {"Schema": "Production"}
+            WorkOrderID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            OrderQty Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            StockedQty Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ScrappedQty Integer (2) PRECISION 5 SCALE 0 {"Req": True}
+            StartDate Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            EndDate Datetime (16) PRECISION 23 SCALE 3
+            DueDate Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            ScrapReasonID Integer (2) PRECISION 5 SCALE 0
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item WorkOrderRouting {"Schema": "Production"}
+            WorkOrderID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            OperationSequence Integer (2) PRECISION 5 SCALE 0 {"PK": True, "Req": True}
+            LocationID Integer (2) PRECISION 5 SCALE 0 {"Req": True}
+            ScheduledStartDate Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            ScheduledEndDate Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            ActualStartDate Datetime (16) PRECISION 23 SCALE 3
+            ActualEndDate Datetime (16) PRECISION 23 SCALE 3
+            ActualResourceHrs NUMERIC (11) PRECISION 9 SCALE 4
+            PlannedCost Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            ActualCost Float (21) PRECISION 19 SCALE 4
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ProductVendor {"Schema": "Purchasing"}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            AverageLeadTime Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            StandardPrice Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            LastReceiptCost Float (21) PRECISION 19 SCALE 4
+            LastReceiptDate Datetime (16) PRECISION 23 SCALE 3
+            MinOrderQty Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            MaxOrderQty Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            OnOrderQty Integer (4) PRECISION 10 SCALE 0
+            UnitMeasureCode Character (6) PRECISION 3 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item PurchaseOrderDetail {"Schema": "Purchasing"}
+            PurchaseOrderID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            PurchaseOrderDetailID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            DueDate Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            OrderQty Integer (2) PRECISION 5 SCALE 0 {"Req": True}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            UnitPrice Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            LineTotal Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            ReceivedQty NUMERIC (10) PRECISION 8 SCALE 2 {"Req": True}
+            RejectedQty NUMERIC (10) PRECISION 8 SCALE 2 {"Req": True}
+            StockedQty NUMERIC (11) PRECISION 9 SCALE 2 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item PurchaseOrderHeader {"Schema": "Purchasing"}
+            PurchaseOrderID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            RevisionNumber Integer (1) PRECISION 3 SCALE 0 DEFAULT 0 {"Req": True}
+            Status Integer (1) PRECISION 3 SCALE 0 DEFAULT 1 {"Req": True}
+            EmployeeID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            VendorID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ShipMethodID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            OrderDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+            ShipDate Datetime (16) PRECISION 23 SCALE 3
+            SubTotal Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            TaxAmt Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            Freight Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            TotalDue Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ShipMethod {"Schema": "Purchasing"}
+            ShipMethodID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            ShipBase Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            ShipRate Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Vendor {"Schema": "Purchasing"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            AccountNumber ACCOUNTNUMBER (30) PRECISION 15 {"Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            CreditRating Integer (1) PRECISION 3 SCALE 0 {"Req": True}
+            PreferredVendorStatus Boolean (1) PRECISION 1 DEFAULT 1 {"Req": True}
+            ActiveFlag Boolean (1) PRECISION 1 DEFAULT 1 {"Req": True}
+            PurchasingWebServiceURL String (2048) PRECISION 1024
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item CountryRegionCurrency {"Schema": "Sales"}
+            CountryRegionCode String (6) PRECISION 3 {"PK": True, "Req": True}
+            CurrencyCode Character (6) PRECISION 3 {"PK": True, "Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item CreditCard {"Schema": "Sales"}
+            CreditCardID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            CardType String (100) PRECISION 50 {"Req": True}
+            CardNumber String (50) PRECISION 25 {"Req": True}
+            ExpMonth Integer (1) PRECISION 3 SCALE 0 {"Req": True}
+            ExpYear Integer (2) PRECISION 5 SCALE 0 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Currency {"Schema": "Sales"}
+            CurrencyCode Character (6) PRECISION 3 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item CurrencyRate {"Schema": "Sales"}
+            CurrencyRateID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            CurrencyRateDate Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            FromCurrencyCode Character (6) PRECISION 3 {"Req": True}
+            ToCurrencyCode Character (6) PRECISION 3 {"Req": True}
+            AverageRate Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            EndOfDayRate Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Customer {"Schema": "Sales"}
+            CustomerID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            PersonID Integer (4) PRECISION 10 SCALE 0
+            StoreID Integer (4) PRECISION 10 SCALE 0
+            TerritoryID Integer (4) PRECISION 10 SCALE 0
+            AccountNumber String (10) PRECISION 10 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item PersonCreditCard {"Schema": "Sales"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            CreditCardID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item SalesOrderDetail {"Schema": "Sales"}
+            SalesOrderID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            SalesOrderDetailID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            CarrierTrackingNumber String (50) PRECISION 25
+            OrderQty Integer (2) PRECISION 5 SCALE 0 {"Req": True}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            SpecialOfferID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            UnitPrice Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            UnitPriceDiscount Float (21) PRECISION 19 SCALE 4 DEFAULT 0.0 {"Req": True}
+            LineTotal NUMERIC (40) PRECISION 38 SCALE 6 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item SalesOrderHeader {"Schema": "Sales"}
+            SalesOrderID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            RevisionNumber Integer (1) PRECISION 3 SCALE 0 DEFAULT 0 {"Req": True}
+            OrderDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+            DueDate Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            ShipDate Datetime (16) PRECISION 23 SCALE 3
+            Status Integer (1) PRECISION 3 SCALE 0 DEFAULT 1 {"Req": True}
+            OnlineOrderFlag Boolean (1) PRECISION 1 DEFAULT 1 {"Req": True}
+            SalesOrderNumber String (50) PRECISION 25 {"Req": True}
+            PurchaseOrderNumber ORDERNUMBER (50) PRECISION 25
+            AccountNumber ACCOUNTNUMBER (30) PRECISION 15
+            CustomerID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            SalesPersonID Integer (4) PRECISION 10 SCALE 0
+            TerritoryID Integer (4) PRECISION 10 SCALE 0
+            BillToAddressID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ShipToAddressID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            ShipMethodID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            CreditCardID Integer (4) PRECISION 10 SCALE 0
+            CreditCardApprovalCode String (15) PRECISION 15
+            CurrencyRateID Integer (4) PRECISION 10 SCALE 0
+            SubTotal Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            TaxAmt Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            Freight Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            TotalDue Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            Comment String (256) PRECISION 128
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item SalesOrderHeaderSalesReason {"Schema": "Sales"}
+            SalesOrderID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            SalesReasonID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item SalesPerson {"Schema": "Sales"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            TerritoryID Integer (4) PRECISION 10 SCALE 0
+            SalesQuota Float (21) PRECISION 19 SCALE 4
+            Bonus Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            CommissionPct Float (12) PRECISION 10 SCALE 4 DEFAULT 0.00 {"Req": True}
+            SalesYTD Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            SalesLastYear Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item SalesPersonQuotaHistory {"Schema": "Sales"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            QuotaDate Datetime (16) PRECISION 23 SCALE 3 {"PK": True, "Req": True}
+            SalesQuota Float (21) PRECISION 19 SCALE 4 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item SalesReason {"Schema": "Sales"}
+            SalesReasonID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            ReasonType String (100) PRECISION 50 {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item SalesTaxRate {"Schema": "Sales"}
+            SalesTaxRateID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            StateProvinceID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            TaxType Integer (1) PRECISION 3 SCALE 0 {"Req": True}
+            TaxRate Float (12) PRECISION 10 SCALE 4 DEFAULT 0.00 {"Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item SalesTerritory {"Schema": "Sales"}
+            TerritoryID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            CountryRegionCode String (6) PRECISION 3 {"Req": True}
+            Group String (100) PRECISION 50 {"Req": True}
+            SalesYTD Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            SalesLastYear Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            CostYTD Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            CostLastYear Float (21) PRECISION 19 SCALE 4 DEFAULT 0.00 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item SalesTerritoryHistory {"Schema": "Sales"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            TerritoryID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            StartDate Datetime (16) PRECISION 23 SCALE 3 {"PK": True, "Req": True}
+            EndDate Datetime (16) PRECISION 23 SCALE 3
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item ShoppingCartItem {"Schema": "Sales"}
+            ShoppingCartItemID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ShoppingCartID String (100) PRECISION 50 {"Req": True}
+            Quantity Integer (4) PRECISION 10 SCALE 0 DEFAULT 1 {"Req": True}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            DateCreated Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item SpecialOffer {"Schema": "Sales"}
+            SpecialOfferID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Description String (510) PRECISION 255 {"Req": True}
+            DiscountPct Float (12) PRECISION 10 SCALE 4 DEFAULT 0.00 {"Req": True}
+            Type String (100) PRECISION 50 {"Req": True}
+            Category String (100) PRECISION 50 {"Req": True}
+            StartDate Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            EndDate Datetime (16) PRECISION 23 SCALE 3 {"Req": True}
+            MinQty Integer (4) PRECISION 10 SCALE 0 DEFAULT 0 {"Req": True}
+            MaxQty Integer (4) PRECISION 10 SCALE 0
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item SpecialOfferProduct {"Schema": "Sales"}
+            SpecialOfferID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            ProductID Integer (4) PRECISION 10 SCALE 0 {"Req": True}
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+            item Store {"Schema": "Sales"}
+            BusinessEntityID Integer (4) PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            Name String (100) PRECISION 50 {"Req": True}
+            SalesPersonID Integer (4) PRECISION 10 SCALE 0
+            Demographics XML (2147483646) PRECISION 1073741823
+            rowguid Guid (16) PRECISION 36 DEFAULT NEWID() {"Req": True}
+            ModifiedDate Datetime (16) PRECISION 23 SCALE 3 DEFAULT GETDATE() {"Req": True}
+    end_item
+    end_datastore
+END

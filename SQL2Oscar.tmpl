@@ -1,0 +1,6 @@
+        item @!table!@ {"Schema": "@!schema!@"}
+<!--(for i, attribute in enumerate(columns))-->
+            @!attribute.attributename!@ @!attribute.datatype!@<!--(if attribute.length)--> (@!attribute.length!@)<!--(end)--><!--(if attribute.precision)--> PRECISION @!attribute.precision!@<!--(end)--><!--(if attribute.scale)--> SCALE @!attribute.scale!@<!--(end)--><!--(if attribute.default)--> DEFAULT @!attribute.default!@<!--(end)--><!--(if attribute.nullable=="NO")--> {"Req": True}<!--(end)-->
+<!--(end)-->
+    end_item
+    
