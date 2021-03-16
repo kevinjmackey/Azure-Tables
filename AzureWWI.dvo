@@ -1,65 +1,65 @@
 BEGIN
     datastore WideWorldImporters
         item CustomerCategory plural "CustomerCategories" {"Schema": "Sales"}
-            CustomerCategoryID Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
-            CustomerCategoryName String Length  100 {"Req": True}
+            CustomerCategoryID :Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+            CustomerCategoryName :String Length  100 {"Req": True}
             item Customer {"Schema": "Sales"}
-                CustomerCategoryID Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
-                CustomerID Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
-                CustomerName String Length  200 {"Req": True}
-                BillToCustomerID Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                BuyingGroupID Integer Length 4 PRECISION 10 SCALE 0
-                PrimaryContactPersonID Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                AlternateContactPersonID Integer Length 4 PRECISION 10 SCALE 0
-                DeliveryMethodID Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                PostalCityID Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                CreditLimit Numeric Length 20 PRECISION 18 SCALE 2
-                AccountOpenedDate DATE {"Req": True}
-                StandardDiscountPercentage Numeric Length 20 PRECISION 18 SCALE 3 {"Req": True}
-                IsStatementSent Boolean {"Req": True}
-                IsOnCreditHold Boolean {"Req": True}
-                PaymentDays Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                PhoneNumber String Length  40 {"Req": True}
-                FaxNumber String Length  40 {"Req": True}
-                DeliveryRun String Length  10 
-                RunPosition String Length  10 
-                WebsiteURL String Length  512 {"Req": True}
-                DeliveryAddressLine1 String Length  120 {"Req": True}
-                DeliveryAddressLine2 String Length  120 
-                DeliveryPostalCode String Length  20 {"Req": True}
-                PostalAddressLine1 String Length  120 {"Req": True}
-                PostalAddressLine2 String Length  120 
-                PostalPostalCode String Length  20 {"Req": True}
+                CustomerCategoryID :Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+                CustomerID :Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+                CustomerName :String Length  200 {"Req": True}
+                BillToCustomerID :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                BuyingGroupID :Integer Length 4 PRECISION 10 SCALE 0
+                PrimaryContactPersonID :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                AlternateContactPersonID :Integer Length 4 PRECISION 10 SCALE 0
+                DeliveryMethodID :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                PostalCityID :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                CreditLimit :Numeric Length 20 PRECISION 18 SCALE 2
+                AccountOpenedDate :Date {"Req": True}
+                StandardDiscountPercentage :Numeric Length 20 PRECISION 18 SCALE 3 {"Req": True}
+                IsStatementSent :Boolean {"Req": True}
+                IsOnCreditHold :Boolean {"Req": True}
+                PaymentDays :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                PhoneNumber :String Length  40 {"Req": True}
+                FaxNumber :String Length  40 {"Req": True}
+                DeliveryRun :String Length  10 
+                RunPosition :String Length  10 
+                WebsiteURL :String Length  512 {"Req": True}
+                DeliveryAddressLine1 :String Length  120 {"Req": True}
+                DeliveryAddressLine2 :String Length  120 
+                DeliveryPostalCode :String Length  20 {"Req": True}
+                PostalAddressLine1 :String Length  120 {"Req": True}
+                PostalAddressLine2 :String Length  120 
+                PostalPostalCode :String Length  20 {"Req": True}
                 item Order {"Schema": "Sales"}
-                    CustomerID Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
-                    OrderID Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
-                    SalespersonPersonID Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                    PickedByPersonID Integer Length 4 PRECISION 10 SCALE 0
-                    ContactPersonID Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                    BackorderOrderID Integer Length 4 PRECISION 10 SCALE 0
-                    OrderDate Date {"Req": True}
-                    ExpectedDeliveryDate Date {"Req": True}
-                    CustomerPurchaseOrderNumber String Length 40
-                    IsUndersupplyBackordered Boolean {"Req": True}
-                    Comments String Length 8000
-                    DeliveryInstructions String Length 8000
-                    InternalComments String Length 8000
-                    PickingCompletedWhen Datetime 
-                    LastEditedBy Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                    LastEditedWhen Datetime Default SYSDATETIME() {"Req": True}
+                    CustomerID :Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+                    OrderID :Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+                    SalespersonPersonID :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                    PickedByPersonID :Integer Length 4 PRECISION 10 SCALE 0
+                    ContactPersonID :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                    BackorderOrderID :Integer Length 4 PRECISION 10 SCALE 0
+                    OrderDate :Date {"Req": True}
+                    ExpectedDeliveryDate :Date {"Req": True}
+                    CustomerPurchaseOrderNumber :String Length 40
+                    IsUndersupplyBackordered :Boolean {"Req": True}
+                    Comments :String Length 8000
+                    DeliveryInstructions :String Length 8000
+                    InternalComments :String Length 8000
+                    PickingCompletedWhen :Datetime 
+                    LastEditedBy :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                    LastEditedWhen :Datetime Default SYSDATETIME() {"Req": True}
                         item OrderLine {"Schema": "Sales"}
-                            OrderID Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
-                            OrderLineID Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
-                            StockItemID Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                            Description String Length 200 PRECISION 100 {"Req": True}
-                            PackageTypeID Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                            Quantity Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                            UnitPrice Numeric Length 20 PRECISION 18 SCALE 2
-                            TaxRate Numeric Length 20 PRECISION 18 SCALE 3 {"Req": True}
-                            PickedQuantity Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                            PickingCompletedWhen Datetime
-                            LastEditedBy Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
-                            LastEditedWhen Datetime DEFAULT SYSDATETIME() {"Req": True}
+                            OrderID :Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+                            OrderLineID :Integer Length 4 PRECISION 10 SCALE 0 {"PK": True, "Req": True}
+                            StockItemID :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                            Description :String Length 200 PRECISION 100 {"Req": True}
+                            PackageTypeID :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                            Quantity :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                            UnitPrice :Numeric Length 20 PRECISION 18 SCALE 2
+                            TaxRate :Numeric Length 20 PRECISION 18 SCALE 3 {"Req": True}
+                            PickedQuantity :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                            PickingCompletedWhen :Datetime
+                            LastEditedBy :Integer Length 4 PRECISION 10 SCALE 0 {"Req": True}
+                            LastEditedWhen :Datetime DEFAULT SYSDATETIME() {"Req": True}
                         end_item
                 end_item
             end_item

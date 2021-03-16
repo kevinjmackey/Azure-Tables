@@ -1,0 +1,44 @@
+BEGIN
+    datastore AdventureWorks2019
+        item ProductCategory "Product Category" Plural "ProductCategories" {"Schema": "Production"}
+            ProductCategoryID :Integer {"PK": True, "Req": True, "auto" : "true", "increment" : [1,1]}
+            Name :String Length 100 {"Req": True}
+            rowguid :Guid DEFAULT NEWID() {"Req": True}
+            ModifiedDate :Datetime DEFAULT GETDATE() {"Req": True}
+            item ProductSubcategory Plural "ProductSubcategories" {"Schema": "Production"}
+                ProductSubcategoryID :Integer (4) {"PK": True, "Req": True}
+                ProductCategoryID :Integer {"Req": True}
+                Name :String Length 100 {"Req": True}
+                rowguid :Guid DEFAULT NEWID() {"Req": True}
+                ModifiedDate :Datetime DEFAULT GETDATE() {"Req": True}
+                item Product {"Schema": "Production"}
+                    ProductID :Integer {"PK": True, "Req": True}
+                    Name :String Length 100 {"Req": True}
+                    ProductNumber :String Length 50 {"Req": True}
+                    MakeFlag :Boolean DEFAULT 1 {"Req": True}
+                    FinishedGoodsFlag :Boolean DEFAULT 1 {"Req": True}
+                    Color :String Length 30
+                    SafetyStockLevel :Integer {"Req": True}
+                    ReorderPoint :Integer {"Req": True}
+                    StandardCost :Float PRECISION 19 SCALE 4 {"Req": True}
+                    ListPrice :Float PRECISION 19 SCALE 4 {"Req": True}
+                    Size :String Length 10
+                    SizeUnitMeasureCode :Character Length 6
+                    WeightUnitMeasureCode :Character Length 6
+                    Weight :Numeric (10) PRECISION 8 SCALE 2
+                    DaysToManufacture :Integer {"Req": True}
+                    ProductLine :Character Length 4
+                    Class :Character Length 4
+                    Style :Character Length 4
+                    ProductSubcategoryID :Integer
+                    ProductModelID :Integer
+                    SellStartDate :Datetime {"Req": True}
+                    SellEndDate :Datetime
+                    DiscontinuedDate :Datetime
+                    rowguid :Guid DEFAULT NEWID() {"Req": True}
+                    ModifiedDate :Datetime DEFAULT GETDATE() {"Req": True}
+                end_item
+            end_item
+        end_item
+    end_datastore
+END

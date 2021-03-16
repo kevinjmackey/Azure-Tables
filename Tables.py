@@ -166,6 +166,18 @@ def WriteVersionTable():
         table_service = TableService(account_name=my_account_name,account_key=my_account_key)
         # table_service.create_table("dvVersions")
     try:
+        print("Removing old version entries...")
+        queryFilter = "(PartitionKey eq 'YRC-M204')"
+        entities = table_service.query_entities("dvVersions", filter = queryFilter)
+        for entity in entities:
+            table_service.delete_entity('dvVersions', entity.PartitionKey, entity.RowKey)
+    except Exception as e:
+        print(e)
+    finally:
+        table_service = None
+        table_service = TableService(account_name=my_account_name,account_key=my_account_key)
+    try:
+        print("Adding new version entries...")
         for version in versions:
             ver = Entity()
             ver.PartitionKey = "YRC-M204"
@@ -590,7 +602,7 @@ def WriteConversionRuleTable():
 
 def WriteSourceEntityTable():
     print("Preparing to write the Source Entity table")
-    sql = """SELECT 'YRC-M204'        AS [PartitionKey]
+    sql = """SELECT 'YRC-M204-{0}'   AS [PartitionKey]
       ,[DD].[FileSource] AS [RowKey]
       ,[R].[RECTYPE]
       ,CAST(1 AS BIT)    AS [isActive]
@@ -607,7 +619,7 @@ INNER JOIN
    FROM [Meta].[DataDictionary] AS [DD] WITH (NOLOCK)
    INNER JOIN [Meta].[DataDictionary_Table] AS [DDT] ON [DDT].[TableName] = [DD].[LegacyTableName]
    LEFT OUTER JOIN [Meta].[DataDictionary_RecType] AS [DDRT] ON [DDRT].[DataDictionaryTableId] = [DDT].[Id]
-   WHERE [DD].[IsCurrent] = CAST(1 AS BIT)
+   WHERE [DD].[VersionNumber] = {0}
    GROUP BY CASE
            WHEN [DDRT].[RecTypeColumnName] IS NULL THEN
            'No Rectype'
@@ -616,12 +628,12 @@ INNER JOIN
            END
            ,[DD].[FileSource]
 ) AS [R] ON [R].[FileSource] = [DD].[FileSource]
-WHERE [DD].[IsCurrent] = CAST(1 AS BIT)
+WHERE [DD].[VersionNumber] = {0}
       AND [DD].[IsHistoryTable] = 'N'
 GROUP BY [DD].[FileSource]
         ,[R].[RECTYPE]
 UNION ALL
-SELECT 'YRC-M204'        AS [PartitionKey]
+SELECT 'YRC-M204-{0}'    AS [PartitionKey]
       ,[DD].[FileSource] AS [RowKey]
       ,CASE
            WHEN [R].[RecordType] IS NULL THEN
@@ -639,7 +651,7 @@ FROM [Meta].[DataDictionary] AS [DD] WITH (NOLOCK)
               AND [DD2].[IsHistoryTable] = 'Y'
     )                        AS [R]
     ON [R].[FileSource] = [DD].[FileSource]
-WHERE [DD].[IsCurrent] = CAST(1 AS BIT)
+WHERE [DD].[VersionNumber] = {0}
       AND [DD].[IsHistoryTable] = 'Y'
 GROUP BY
     CASE
@@ -651,7 +663,7 @@ GROUP BY
    ,[DD].[FileSource]
 ORDER BY
     1
-   ,2;"""
+   ,2;""".format(ddVersion)
     results = _RunQuery(sql)
     if (results):
         try:
@@ -693,13 +705,12 @@ def Main(_argv):
         ddVersion = int(_argv[1])
     print("Using Data Dictionary version: {}".format(ddVersion))
     # WriteEnvironmentTable()
-    # WriteSourceEntityTable()
+    WriteSourceEntityTable()
     # WriteStageEntityTable()
     # WriteDWEntities()
     # WriteDWSources()
-    ShowHighestVersion()
-    DeleteVersionMetadata(str(_argv[1]))
-    WriteVersionTable()
+    # DeleteVersionMetadata(str(_argv[1]))
+    # WriteVersionTable()
     # RetrieveStageEntities(str(_argv[1]), str(_argv[2]))
     # RetrieveDWEntities(str(_argv[1]), str(_argv[2]))
     # RetrieveDWSources(str(_argv[1]), str(_argv[2]))
