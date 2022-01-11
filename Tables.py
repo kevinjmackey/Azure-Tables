@@ -16,8 +16,16 @@ ddVersion = 242
 
 def _RunQuery(query):
     """Arbitrary code execution, hooray"""
-    _connection = pypyodbc.connect(r"Driver={SQL Server};Server=YWSQLRTMA01v\RTMA;Database=CodeGeneration;Trusted_Connection=yes;")
+
+    user = "sqladmin"
+    password = "Dataview#1"
+    server = "dataview.database.windows.net"
+    database = "CodeGeneration"
+
+    connectionStringAzure = r"Driver={{{0}}};".format('ODBC Driver 17 for SQL Server') + 'Server={};Database={};UID={};PWD={};'.format(server, database, user, password)
+    #_connection = pypyodbc.connect(r"Driver={SQL Server};Server=YWSQLRTMA01v\RTMA;Database=CodeGeneration;Trusted_Connection=yes;")
     #_connection = pypyodbc.connect(r"Driver={SQL Server};Server=ERG-ASUS;Database=WideWorldImporters;Trusted_Connection=yes;")
+    _connection = pypyodbc.connect(connectionStringAzure)
     _cursor = _connection.cursor()
     _query_results = None
     try:
@@ -33,6 +41,13 @@ def _RunQuery(query):
     finally:
         _connection.close()
     return _query_results
+
+def TestAzureSqlConnection():
+    sql = "SELECT MAX([DD].[VersionNumber]) AS [version] FROM [Meta].[DataDictionary] AS [DD];"
+    results = _RunQuery(sql)
+    if (results):
+        for ver in results:
+            print(f"Max version: {ver['version']}")
 
 def CreateFunctionLoggingTable():
     print("Creating the function logging table...")
@@ -709,6 +724,7 @@ def Main(_argv):
     WriteDWEntities()
     WriteDWSources()
     WriteVersionTable()
+    # TestAzureSqlConnection()
     ShowHighestVersion()
     # WriteEnvironmentTable()
     # DeleteVersionMetadata(str(_argv[1]))
